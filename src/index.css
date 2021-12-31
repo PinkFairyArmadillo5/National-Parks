@@ -1,0 +1,12 @@
+.ListofParks {
+  padding: 10px;
+  background-color: yellow;
+  overflow: scroll;
+
+  max-height: 10em;
+}
+
+.scrollList {
+  padding: 10px;
+  background-color: powderblue;
+}

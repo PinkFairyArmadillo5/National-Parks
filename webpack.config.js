@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: process.env.NODE_ENV,
+  mode: 'development',
 
   entry: {
     src: './src/index.js',
@@ -38,4 +38,11 @@ module.exports = {
       template: './src/index.html',
     }),
   ],
+
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+      publicPath: '/',
+    },
+  },
 };
