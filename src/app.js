@@ -7,12 +7,6 @@ import Map from '../components/Map';
 import Trips from '../components/Trips';
 
 function App() {
-  // constuctor(props){
-  //   super(props);
-  //   this.state = {
-
-  //   }
-  // }
   const [selectedState, setSelectedState] = useState('');
 
   return (
@@ -20,11 +14,11 @@ function App() {
       <ListOfStates
         selectedState={selectedState}
         setSelectedState={setSelectedState}
-      ></ListOfStates>
-      <EachNationalParkByState></EachNationalParkByState>
-      <BucketList></BucketList>
-      <Map></Map>
-      <Trips></Trips>
+      />
+      <EachNationalParkByState/>
+      <BucketList/>
+      <Map/>
+      <Trips/>
     </Router>
   );
 }

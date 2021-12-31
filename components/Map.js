@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 function Map() {
-  return <div>Map</div>;
+  return <div>Maps</div>;
 }
 
 export default Map;
