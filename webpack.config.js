@@ -5,15 +5,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: process.env.NODE_ENV,
   devServer: {
-    static: path.join(__dirname, "build"),
+    static: path.join(__dirname, 'build'),
     compress: true,
     port: 8080,
     proxy: {
       '/': {
-          target: 'http://localhost:3000/'
-          
-      }
-    }
+        target: 'http://localhost:3000/',
+      },
+    },
   },
 
   entry: {
