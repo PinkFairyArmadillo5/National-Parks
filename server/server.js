@@ -15,20 +15,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
   return res.sendFile(path.join(__dirname, '../src/index.html'));
 });
+app.use('/db', dbRouter), () => console.log('dbRouter');
 
 app.listen(PORT, () => console.log('Server running on Port', PORT));
 // module.exports = app;
-
-/**
- * app.get('/', (req, res) => {
-db.select('*)
-.from('parks')
-.then((data) => {
-  //console.log(data); 
-  res.json(data);
-}) 
-.catch((err) => {
-  console.log('error in db get:' ${err})
-});
-});
- */
