@@ -11,20 +11,20 @@ function EachNationalParkByState({ selectedState }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          Accept: 'application/json',
         },
         body: JSON.stringify({
-          state: selectedState
-        })
-      }
+          state: selectedState,
+        }),
+      };
 
       fetch('http://localhost:3000/get-state-parks', postOptions)
-      .then(res => res.json())
-      .then(data => setParks(data))
+        .then((res) => res.json())
+        .then((data) => setParks(data));
     } else {
       dontFetchOnFirstRender.current = true;
     }
-  }, [selectedState])
+  }, [selectedState]);
   return (
     <div className='scrollList'>
       <h2>List of National Parks in STATE</h2>
@@ -36,7 +36,7 @@ function EachNationalParkByState({ selectedState }) {
               id={index}
               name={park.fullName}
               value={park.fullName}
-              />
+            />
             <h3>{park.fullName} </h3>
             <h4>{park.description}</h4>
           </label>
