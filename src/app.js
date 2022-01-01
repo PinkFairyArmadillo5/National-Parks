@@ -12,10 +12,11 @@ function App() {
   return (
     <Router>
       <ListOfStates
-        selectedState={selectedState}
         setSelectedState={setSelectedState}
       />
-      <EachNationalParkByState/>
+      <EachNationalParkByState
+        selectedState={selectedState}
+      />
       <BucketList/>
       <Map/>
       <Trips/>
