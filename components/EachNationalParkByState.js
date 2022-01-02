@@ -27,8 +27,22 @@ function EachNationalParkByState({ selectedState }) {
         dataArr.push(el);
       }
     });
-    console.log(dataArr);
-    return dataArr;
+    console.log('log dataArr before put: ', dataArr);
+    const postOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        bucketListParks: dataArr,
+      }),
+    };
+    fetch('http://localhost:3000/db/put-bucketlist', postOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('this is data', data);
+      });
   };
 
   useEffect(() => {

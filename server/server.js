@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use('/get-state-parks', apiRouter);
 app.use('/db', dbRouter), () => console.log('dbRouter');
-
+// app.use('/bucketlistAdd', dbRouter), () => console.log('dbRouter');
 // app.get('/', (req, res) => {
 //   return res.sendFile(path.join(__dirname, '../src/index.html'));
 // });

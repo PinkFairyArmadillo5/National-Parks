@@ -5,7 +5,7 @@ function BucketList() {
 
   useEffect(
     () => {
-      const bucketList = `/db`;
+      const bucketList = `/db/initial-render`;
       fetch(bucketList)
         .then((res) => res.json())
         .then((updatedBL) => {
