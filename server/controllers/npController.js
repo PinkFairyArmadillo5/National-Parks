@@ -16,4 +16,5 @@ npController.getParks = (req, res, next) => {
       next();
     });
 };
+
 module.exports = npController;

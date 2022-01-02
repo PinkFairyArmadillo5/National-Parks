@@ -11,6 +11,7 @@ function BucketList() {
         .then((updatedBL) => {
           console.log('updated Bucket List: ', updatedBL);
           setBucketList(updatedBL);
+          console.log(updatedBL);
         });
     },
     [
