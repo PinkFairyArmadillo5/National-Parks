@@ -15,19 +15,8 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-<<<<<<< HEAD
-app.post('/get-state-parks', getStateParks, (req, res) => {
-  return res.status(200).json([...res.locals.parks]);
-});
-
-app.get('/', (req, res) => {
-  return res.sendFile(path.join(__dirname, '../src/index.html'));
-});
-// app.use('/db', dbRouter), () => console.log('dbRouter');
-=======
 app.use('/get-state-parks', apiRouter);
 app.use('/db', dbRouter), () => console.log('dbRouter');
->>>>>>> e1bfb074f84ec8d2aaf86e7f89f39fc1a95b4bf0
 
 // app.get('/', (req, res) => {
 //   return res.sendFile(path.join(__dirname, '../src/index.html'));
