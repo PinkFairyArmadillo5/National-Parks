@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ListOfStates from '../components/ListOfStates';
 import EachNationalParkByState from '../components/EachNationalParkByState';
@@ -11,15 +11,11 @@ function App() {
 
   return (
     <Router>
-      <ListOfStates
-        setSelectedState={setSelectedState}
-      />
-      <EachNationalParkByState
-        selectedState={selectedState}
-      />
-      <BucketList/>
-      <Map/>
-      <Trips/>
+      <ListOfStates setSelectedState={setSelectedState} />
+      <EachNationalParkByState selectedState={selectedState} />
+      <BucketList />
+      <Map />
+      <Trips />
     </Router>
   );
 }
