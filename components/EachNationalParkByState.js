@@ -28,7 +28,21 @@ function EachNationalParkByState({ selectedState }) {
       }
     });
     console.log(dataArr);
-    return dataArr;
+    const postOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        bucketListParks: dataArr,
+      }),
+    };
+    fetch('/db/put-bucketlist', postOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('this is data', data);
+      });
   };
 
   useEffect(() => {
