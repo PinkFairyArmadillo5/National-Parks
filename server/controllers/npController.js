@@ -2,8 +2,8 @@ const db = require('../../models/npModels');
 
 const npController = {};
 
-npController.getParks = (req, res, next) => {
-  const bucketlist = 'Select parkname FROM bucketlist;';
+npController.getParksFromBucketList = (req, res, next) => {
+  const bucketlist = 'Select * FROM bucketlist;';
   db.query(bucketlist)
     .then((data) => {
       console.log(data);
@@ -17,4 +17,31 @@ npController.getParks = (req, res, next) => {
     });
 };
 
+<<<<<<< HEAD
+=======
+npController.bucketlistAdd = (req, res, next) => {
+  // const { fullName, parkCode, latitude, longitude } = req.body.bucketListParks;
+  req.body.bucketListPark.forEach((park) => {
+    const bucketlistAdd = `INSERT INTO bucketlist(parkname, parkcode, lat, long)
+  VALUES($1, $2, $3, $4))`;
+    const values = [
+      park.fullName,
+      park.parkCode,
+      park.latitude,
+      park.longitude,
+    ];
+
+    db.query(bucketlistAdd, values)
+      .then((data) => {
+        console.log(`from add ${data}`);
+        next();
+      })
+      .catch((err) => {
+        console.log(`error in bucketlistAdd ${park.fullName}:`, err);
+        next({ log: err });
+      });
+  });
+};
+
+>>>>>>> 7bfdb2f9c00f9002e51b27cb9a02058393e6b34e
 module.exports = npController;
