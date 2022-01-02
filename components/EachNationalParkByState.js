@@ -29,15 +29,12 @@ function EachNationalParkByState({ selectedState }) {
           state: selectedState,
         }),
       };
-      fetch('http://localhost:3000/get-state-parks', postOptions)
+      fetch('/get-state-parks', postOptions)
         .then((res) => res.json())
         .then((data) => {
           setParks(data);
           console.log('data from ext API: ', data);
-          const arr = [];
-          arr.length = data.length;
-          arr.fill(false);
-          setCheckedState(arr);
+          setCheckedState(new Array(data.length).fill(false));
           console.log('line 38:', checkedState);
         });
     } else {
