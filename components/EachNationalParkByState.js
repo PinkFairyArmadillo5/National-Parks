@@ -6,15 +6,29 @@ function EachNationalParkByState({ selectedState }) {
   const [parks, setParks] = useState([]);
   const [checkedState, setCheckedState] = useState([]);
   const dontFetchOnFirstRender = useRef(false);
-  const handleOnChange = (position) => {
+  const handleOnChange = (position, parkData) => {
     const deepCopy = [...checkedState];
-    deepCopy[position] = !deepCopy[position];
+    // deepCopy[position] = !deepCopy[position];
+    if (deepCopy[position] === false) {
+      deepCopy[position] = parkData;
+    } else {
+      deepCopy[position] = false;
+    }
+
     console.log('this updatedCheckedState', deepCopy);
     setCheckedState(deepCopy);
   };
 
   const handleOnClick = () => {
-    console.log('hi');
+    console.log('clicked Add to Bucketlist');
+    let dataArr = [];
+    checkedState.forEach((el) => {
+      if (el !== false) {
+        dataArr.push(el);
+      }
+    });
+    console.log(dataArr);
+    return dataArr;
   };
 
   useEffect(() => {
@@ -55,7 +69,7 @@ function EachNationalParkByState({ selectedState }) {
               name={park.fullName}
               value={park.fullName}
               onChange={() => {
-                handleOnChange(index);
+                handleOnChange(index, park);
               }}
               checked={checkedState[index]}
             />
