@@ -8,7 +8,7 @@ npController.getParksFromBucketList = (req, res, next) => {
     .then((data) => {
       console.log(data);
       res.locals.parks = data.rows;
-      console.log(res.locals.parks);
+      console.log('log from getParksFromBucketList: ', res.locals.parks);
       next();
     })
     .catch((err) => {
@@ -19,9 +19,10 @@ npController.getParksFromBucketList = (req, res, next) => {
 
 npController.bucketlistAdd = (req, res, next) => {
   // const { fullName, parkCode, latitude, longitude } = req.body.bucketListParks;
-  req.body.bucketListPark.forEach((park) => {
-    const bucketlistAdd = `INSERT INTO bucketlist(parkname, parkcode, lat, long)
-  VALUES($1, $2, $3, $4))`;
+  console.log('npController.bucketlistAdd', req.body.bucketListParks);
+  req.body.bucketListParks.forEach((park) => {
+    const bucketlistAdd = `INSERT INTO bucketlist (parkName, parkCode, lat, long)
+  VALUES($1, $2, $3, $4)`;
     const values = [
       park.fullName,
       park.parkCode,
@@ -32,13 +33,14 @@ npController.bucketlistAdd = (req, res, next) => {
     db.query(bucketlistAdd, values)
       .then((data) => {
         console.log(`from add ${data}`);
-        next();
+        // next();
       })
       .catch((err) => {
         console.log(`error in bucketlistAdd ${park.fullName}:`, err);
         next({ log: err });
       });
   });
+  next();
 };
 
 module.exports = npController;

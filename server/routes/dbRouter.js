@@ -10,11 +10,14 @@ dbRouter.get(
   (req, res) => res.status(200).json(res.locals.parks)
 );
 
-dbRouter.get(
+dbRouter.post(
   '/put-bucketlist',
   npController.bucketlistAdd,
   npController.getParksFromBucketList,
-  (req, res) => res.status(200).json(res.locals.bucketlist)
+  (req, res) => {
+    res.status(200).json(res.locals.parks);
+    console.log('finished dbRouter.post/put-bucketlist');
+  }
 );
 
 module.exports = dbRouter;

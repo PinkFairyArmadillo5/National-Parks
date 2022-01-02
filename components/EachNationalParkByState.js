@@ -27,7 +27,7 @@ function EachNationalParkByState({ selectedState }) {
         dataArr.push(el);
       }
     });
-    console.log(dataArr);
+    console.log('log dataArr before put: ', dataArr);
     const postOptions = {
       method: 'POST',
       headers: {
@@ -38,7 +38,7 @@ function EachNationalParkByState({ selectedState }) {
         bucketListParks: dataArr,
       }),
     };
-    fetch('/db/put-bucketlist', postOptions)
+    fetch('http://localhost:3000/db/put-bucketlist', postOptions)
       .then((res) => res.json())
       .then((data) => {
         console.log('this is data', data);
