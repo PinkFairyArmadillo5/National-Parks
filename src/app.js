@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ListOfStates from '../components/ListOfStates';
 import EachNationalParkByState from '../components/EachNationalParkByState';
@@ -8,12 +8,13 @@ import Trips from '../components/Trips';
 
 function App() {
   const [selectedState, setSelectedState] = useState('');
+  const [submitButtonPressedInENPBS, setSubmitButtonPressedInENPBS] = useState(0)
 
   return (
     <Router>
       <ListOfStates setSelectedState={setSelectedState} />
-      <EachNationalParkByState selectedState={selectedState} />
-      <BucketList />
+      <EachNationalParkByState selectedState={selectedState} submitButtonPressedInENPBS={submitButtonPressedInENPBS} setSubmitButtonPressedInENPBS={setSubmitButtonPressedInENPBS}/>
+      <BucketList submitButtonPressedInENPBS={submitButtonPressedInENPBS}/>
       <Map />
       <Trips />
     </Router>
