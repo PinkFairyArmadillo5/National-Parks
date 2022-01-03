@@ -16,7 +16,7 @@ dbRouter.post(
   npController.getParksFromBucketList,
   (req, res) => {
     res.status(200).json(res.locals.parks);
-    console.log('finished dbRouter.post/put-bucketlist');
+    // console.log('finished dbRouter.post/put-bucketlist');
   }
 );
 
