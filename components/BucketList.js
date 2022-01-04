@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 
-function BucketList({ submitButtonPressedInENPBS }) {
-  const [bucketList, setBucketList] = useState([]);
+function BucketList({ bucketList, setBucketList }) {
+  // const [bucketList, setBucketList] = useState([]);
 
   useEffect(() => {
-      const bucketList = `/db/initial-render`;
-      fetch(bucketList)
-        .then((res) => res.json())
-        .then((updatedBL) => {
-          // console.log('updated Bucket List: ', updatedBL);
-          setBucketList(updatedBL);
-          console.log(updatedBL);
-        });
-    }, [submitButtonPressedInENPBS]
+    const bucketListQuery = `/db/initial-render`;
+    fetch(bucketListQuery)
+      .then((res) => res.json())
+      .then((updatedBL) => {
+        // console.log('updated Bucket List: ', updatedBL);
+        setBucketList(updatedBL);
+        console.log('BucketList.js line 13', updatedBL);
+      });
+  }, []
   );
 
   return (
