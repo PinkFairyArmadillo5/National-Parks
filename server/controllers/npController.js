@@ -17,8 +17,6 @@ npController.getParksFromBucketList = (req, res, next) => {
     });
 };
 
-<<<<<<< HEAD
-=======
 npController.bucketlistAdd = (req, res, next) => {
   // const { fullName, parkCode, latitude, longitude } = req.body.bucketListParks;
   // console.log('npController.bucketlistAdd', req.body.bucketListParks);
@@ -45,5 +43,4 @@ npController.bucketlistAdd = (req, res, next) => {
   next();
 };
 
->>>>>>> 7bfdb2f9c00f9002e51b27cb9a02058393e6b34e
 module.exports = npController;
