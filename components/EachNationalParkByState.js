@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 
-function EachNationalParkByState({ selectedState, submitButtonPressedInENPBS, setSubmitButtonPressedInENPBS }) {
+function EachNationalParkByState({ selectedState, bucketList, setBucketList }) {
   //each state has more than one national park
   //function to return all
   const [parks, setParks] = useState([]);
@@ -9,6 +9,7 @@ function EachNationalParkByState({ selectedState, submitButtonPressedInENPBS, se
   const dontFetchOnFirstRender = useRef(false);
   const handleOnChange = (position, parkData) => {
     const deepCopy = [...checkedState];
+
     if (deepCopy[position] === false) {
       deepCopy[position] = parkData;
     } else {
@@ -43,7 +44,11 @@ function EachNationalParkByState({ selectedState, submitButtonPressedInENPBS, se
       .then((data) => {
         // console.log('this is data', data);
       });
-      setSubmitButtonPressedInENPBS(++submitButtonPressedInENPBS);
+    // setSubmitButtonPressedInENPBS(++submitButtonPressedInENPBS);
+    console.log('dataArr=', dataArr)
+    setBucketList([...bucketList, dataArr[0].fullName])
+    console.log('bucketList var on line 50: ', bucketList)
+
   };
 
   useEffect(() => {
