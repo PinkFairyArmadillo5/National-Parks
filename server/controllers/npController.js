@@ -2,6 +2,35 @@ const db = require('../../models/npModels');
 
 const npController = {};
 
+npController.bucketlistCheckDuplicates = (req, res, next) => {
+  req.body.bucketListParks.forEach((park) => {
+    const duplicateCheckQuery =
+      'SELECT parkName FROM bucketlist WHERE parkName=$1';
+    db.query(duplicateCheckQuery, [park.fullName])
+      .then((data) => {
+        //console.log('data from sql query check dupes: ', data);
+        let noDuplicatesArr = [];
+        console.log('noDupesArr before: ', noDuplicatesArr);
+        if (data.rows === []) {
+          noDuplicatesArr.push(park);
+          req.body.bucketListParks = noDuplicatesArr;
+          console.log(
+            'noDuplicatesArr AFTER bucketlistCheckDuplicates: ',
+            noDuplicatesArr.fullName
+          );
+        } else if (data.rows !== []) {
+          console.log('this park already exists in BL: ', park.fullName);
+        }
+      })
+      .catch((err) => {
+        console.log(`error in bucketlistCheckDuplicates: ${err}`);
+        next('route');
+      });
+  });
+
+  next();
+};
+
 npController.getParksFromBucketList = (req, res, next) => {
   const bucketlist = 'Select * FROM bucketlist;';
   db.query(bucketlist)
