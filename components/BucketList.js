@@ -14,12 +14,12 @@ function BucketList({ bucketList, setBucketList }) {
       });
   }, []);
 
-  //const [ updatedBucketList, setUpdatedBucketList ] = useState(bucketList)
+  const [updatedBucketList, setUpdatedBucketList] = useState(bucketList);
 
   const handleDelete = (e) => {
     const parkToDelete = e.target.getPark(bucketList.parkcode);
     setUpdatedBucketList(
-      bucketList.filter((park) => park.parkcode !== parkToDelete)
+      updatedBucketList.filter((park) => park.parkcode !== parkToDelete)
     );
   };
 
