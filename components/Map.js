@@ -9,7 +9,7 @@ function Map({ selectedState, bucketList, setBucketList }) {
   const [viewport, setViewport] = useState({
     latitude: 37.0902,
     longitude: -95.7129,
-    width: '100vw',
+    width: '98vw',
     height: '100vh',
     zoom: 4,
   })
@@ -48,7 +48,7 @@ function Map({ selectedState, bucketList, setBucketList }) {
       mapStyle='mapbox://styles/mapbox/outdoors-v11'
       onViewportChange={setViewport}
       onHover={onHover}
-      interactiveLayerIds={['data']}
+    // interactiveLayerIds={['data']}
     >
       <EachNationalParkByState selectedState={selectedState} bucketList={bucketList} setBucketList={setBucketList} />
       {hoverInfo && (
