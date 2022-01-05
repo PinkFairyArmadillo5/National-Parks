@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 
-function EachNationalParkByState({ selectedState, bucketList, setBucketList }) {
+function EachNationalParkByState({ parks, setParks, selectedState, bucketList, setBucketList }) {
   //each state has more than one national park
   //function to return all
-  const [parks, setParks] = useState([]);
+  // const [parks, setParks] = useState([]);
   const [checkedState, setCheckedState] = useState([]);
-  const dontFetchOnFirstRender = useRef(false);
+  // const dontFetchOnFirstRender = useRef(false);
   const handleOnChange = (position, parkData) => {
     const deepCopy = [...checkedState];
 
@@ -20,15 +20,7 @@ function EachNationalParkByState({ selectedState, bucketList, setBucketList }) {
   };
 
   const handleOnClick = () => {
-    // console.log('clicked Add to Bucketlist');
     const dataArr = checkedState.filter(el => el);
-    // let dataArr = [];
-    // checkedState.forEach((el) => {
-    //   if (el !== false) {
-    //     dataArr.push(el);
-    //   }
-    // });
-    // console.log('log dataArr before put: ', dataArr);
     const postOptions = {
       method: 'POST',
       headers: {
@@ -48,11 +40,11 @@ function EachNationalParkByState({ selectedState, bucketList, setBucketList }) {
     console.log('dataArr=', dataArr)
     setBucketList([...bucketList, dataArr[0].fullName])
     console.log('bucketList var on line 50: ', bucketList)
-
   };
 
-  useEffect(() => {
-    if (dontFetchOnFirstRender.current === true) {
+  useEffect(async () => {
+    if (selectedState) {
+      // if (dontFetchOnFirstRender.current === true) {
       const postOptions = {
         method: 'POST',
         headers: {
@@ -71,9 +63,10 @@ function EachNationalParkByState({ selectedState, bucketList, setBucketList }) {
           setCheckedState(new Array(data.length).fill(false));
           // console.log('line 38:', checkedState);
         });
-    } else {
-      dontFetchOnFirstRender.current = true;
     }
+    // } else {
+    //   dontFetchOnFirstRender.current = true;
+    // }
   }, [selectedState]);
 
   return (
@@ -81,12 +74,11 @@ function EachNationalParkByState({ selectedState, bucketList, setBucketList }) {
       <h2>List of National Parks in {selectedState}</h2>
       <div className='ListofParks'>
         {parks.map((park, index) => (
-          <div>
-            <label key={index}>
+          <div key={index} title={park.description}>
+            <label >
               <input
                 type='checkbox'
-                // id={index}
-                // key={index} //commented these out and put "key" in <label> instead. Warning no longer appears in browser console.
+                className='park-checkbox'
                 name={park.fullName}
                 value={park.fullName}
                 onChange={() => {

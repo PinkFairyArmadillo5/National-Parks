@@ -1,3 +1,7 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
 .ListofParks {
   padding: 10px;
   background-color: yellow;
@@ -25,14 +29,7 @@
   outline: none;
   /* text-transform: uppercase; */
 }
-.onhover-bubble {
-  position: absolute;
-  margin: 8px;
-  padding: 4px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  max-width: 300px;
-  font-size: 10px;
-  z-index: 9;
-  pointer-events: none;
+.onhover-popup {
+  font-size: 12px;
+  font-weight: 700;
 }
