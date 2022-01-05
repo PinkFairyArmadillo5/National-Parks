@@ -16,7 +16,7 @@ function App() {
       <ListOfStates setSelectedState={setSelectedState} />
       <EachNationalParkByState selectedState={selectedState} bucketList={bucketList} setBucketList={setBucketList} />
       <BucketList bucketList={bucketList} setBucketList={setBucketList} />
-      <Map />
+      <Map selectedState={selectedState} bucketList={bucketList} setBucketList={setBucketList} />
       <Trips />
     </Router>
   );
