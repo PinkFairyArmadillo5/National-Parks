@@ -77,25 +77,27 @@ function EachNationalParkByState({ selectedState, bucketList, setBucketList }) {
   }, [selectedState]);
 
   return (
-    <div className='scrollList'>
+    <div className='each-park-by-state'>
       <h2>List of National Parks in {selectedState}</h2>
       <div className='ListofParks'>
         {parks.map((park, index) => (
-          <label key={index}>
-            <input
-              type='checkbox'
-              // id={index}
-              // key={index} //commented these out and put "key" in <label> instead. Warning no longer appears in browser console.
-              name={park.fullName}
-              value={park.fullName}
-              onChange={() => {
-                handleOnChange(index, park);
-              }}
-              checked={checkedState[index]}
-            />
-            <h3>{park.fullName} </h3>
-            <h4>{park.description}</h4>
-          </label>
+          <div>
+            <label key={index}>
+              <input
+                type='checkbox'
+                // id={index}
+                // key={index} //commented these out and put "key" in <label> instead. Warning no longer appears in browser console.
+                name={park.fullName}
+                value={park.fullName}
+                onChange={() => {
+                  handleOnChange(index, park);
+                }}
+                checked={checkedState[index]}
+              />
+              <span>{park.fullName} </span>
+              {/* <h4>{park.description}</h4> */}
+            </label>
+          </div>
         ))}
       </div>
       <button className='addToBL' onClick={handleOnClick}>

@@ -2,11 +2,37 @@
   padding: 10px;
   background-color: yellow;
   overflow: scroll;
-
-  max-height: 10em;
+  height: 350px;
 }
 
 .scrollList {
   padding: 10px;
   background-color: powderblue;
+}
+.each-park-by-state {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 500px;
+  width: 320px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  padding: 12px 24px;
+  margin: 20px;
+  font-size: 13px;
+  line-height: 2;
+  color: #6b6b76;
+  outline: none;
+  /* text-transform: uppercase; */
+}
+.onhover-bubble {
+  position: absolute;
+  margin: 8px;
+  padding: 4px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  max-width: 300px;
+  font-size: 10px;
+  z-index: 9;
+  pointer-events: none;
 }
