@@ -18,7 +18,7 @@ function BucketList({ bucketList, setBucketList }) {
 
   const handleDelete = (park) => {
     console.log('line 27', park);
-    const deletedPark = park.parkname;
+    const deletedPark = park.parkcode;
     console.log('line 29', deletedPark);
 
     const index = bucketList.indexOf(park);
