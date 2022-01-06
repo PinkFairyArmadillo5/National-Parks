@@ -2,33 +2,40 @@ const db = require('../../models/npModels');
 
 const npController = {};
 
-npController.bucketlistCheckDuplicates = (req, res, next) => {
-  req.body.bucketListParks.forEach((park) => {
+npController.bucketlistCheckDuplicates = async (req, res, next) => {
+  let noDuplicatesArr = [{ name: 'sam' }];
+  //res.locals.bucketListParks = [1, 2, 3];
+  req.body.bucketListParks.forEach(async (park) => {
     const duplicateCheckQuery =
       'SELECT parkName FROM bucketlist WHERE parkName=$1';
-    db.query(duplicateCheckQuery, [park.fullName])
-      .then((data) => {
-        //console.log('data from sql query check dupes: ', data);
-        let noDuplicatesArr = [];
-        console.log('noDupesArr before: ', noDuplicatesArr);
-        if (data.rows === []) {
-          noDuplicatesArr.push(park);
-          req.body.bucketListParks = noDuplicatesArr;
-          console.log(
-            'noDuplicatesArr AFTER bucketlistCheckDuplicates: ',
-            noDuplicatesArr.fullName
-          );
-        } else if (data.rows !== []) {
-          console.log('this park already exists in BL: ', park.fullName);
-        }
-      })
-      .catch((err) => {
-        console.log(`error in bucketlistCheckDuplicates: ${err}`);
-        next('route');
-      });
+    const data = await db.query(duplicateCheckQuery, [park.fullName]);
+    if (data) {
+      // console.log('data from sql query check dupes: ', data.rows);
+      // console.log('noDupesArr before: ', noDuplicatesArr);
+      if (Array.isArray(data.rows) && data.rows.length === 0) {
+        noDuplicatesArr.push(park);
+        res.locals.bucketListParks = [1, 2, 3];
+        console.log('SAM IN CATCH DUPES', res.locals.bucketListParks);
+        // console.log(
+        //   'noDuplicatesArr AFTER bucketlistCheckDuplicates: ',
+        //   noDuplicatesArr.fullName
+        // );
+      }
+      // } else {
+      //   console.log('this park already exists in BL: ', park.fullName);
+      //   req.body.bucketListParks = req.body.bucketListParks.filter(
+      //     (x) => x[0].fullName !== data.rows[0].parkName
+      //   );
+      //   console.log('bucketListParks line 24: ', req.body.bucketListParks);
+      // }
+    }
+    if (!data) {
+      console.log(`error in bucketlistCheckDuplicates: ${err}`);
+      next('route');
+    }
   });
 
-  next();
+  return next();
 };
 
 npController.getParksFromBucketList = (req, res, next) => {
@@ -46,10 +53,17 @@ npController.getParksFromBucketList = (req, res, next) => {
     });
 };
 
-npController.bucketlistAdd = (req, res, next) => {
+npController.bucketlistAdd = async (req, res, next) => {
   // const { fullName, parkCode, latitude, longitude } = req.body.bucketListParks;
   // console.log('npController.bucketlistAdd', req.body.bucketListParks);
-  req.body.bucketListParks.forEach((park) => {
+
+  console.log('MIA res.locals.bucketListParks: ', res.locals.bucketListParks);
+
+  if (res.locals.bucketListParks.length === 0) {
+    return next();
+  }
+
+  req.body.bucketListParks.forEach(async (park) => {
     const bucketlistAdd = `INSERT INTO bucketlist (parkName, parkCode, lat, long)
   VALUES($1, $2, $3, $4)`;
     const values = [
@@ -59,17 +73,17 @@ npController.bucketlistAdd = (req, res, next) => {
       park.longitude,
     ];
 
-    db.query(bucketlistAdd, values)
-      .then((data) => {
-        // console.log(`from add ${data}`);
-        // next();
-      })
-      .catch((err) => {
-        console.log(`error in bucketlistAdd ${park.fullName}:`, err);
-        next({ log: err });
-      });
+    const data = await db.query(bucketlistAdd, values);
+
+    if (data) {
+      // console.log(`from add ${data}`);
+      // next();
+    } else {
+      console.log(`error in bucketlistAdd ${park.fullName}:`, err);
+      return next({ log: err });
+    }
   });
-  next();
+  return next();
 };
 
 module.exports = npController;
