@@ -43,4 +43,19 @@ npController.bucketlistAdd = (req, res, next) => {
   next();
 };
 
+npController.deletePark = (req, res, next) => {
+  const parkToDelete = req.body.deletedPark;
+  console.log(parkToDelete);
+  const sql = `DELETE FROM bucketlist WHERE parkName = ?`;
+
+  db.query(sql, parkToDelete)
+    .then((data) => {
+      console.log('deleted!');
+    })
+    .catch((err) => {
+      console.log(`error in npDelete ${parkToDelete}:`, err);
+      next({ log: err });
+    });
+};
+
 module.exports = npController;

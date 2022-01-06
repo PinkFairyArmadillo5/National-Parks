@@ -21,7 +21,7 @@ function EachNationalParkByState({ selectedState, bucketList, setBucketList }) {
 
   const handleOnClick = () => {
     // console.log('clicked Add to Bucketlist');
-    const dataArr = checkedState.filter(el => el);
+    const dataArr = checkedState.filter((el) => el);
     // let dataArr = [];
     // checkedState.forEach((el) => {
     //   if (el !== false) {
@@ -45,10 +45,9 @@ function EachNationalParkByState({ selectedState, bucketList, setBucketList }) {
         // console.log('this is data', data);
       });
     // setSubmitButtonPressedInENPBS(++submitButtonPressedInENPBS);
-    console.log('dataArr=', dataArr)
-    setBucketList([...bucketList, dataArr[0].fullName])
-    console.log('bucketList var on line 50: ', bucketList)
-
+    console.log('dataArr=', dataArr);
+    setBucketList([...bucketList, dataArr[0].fullName]);
+    console.log('bucketList var on line 50: ', bucketList);
   };
 
   useEffect(() => {

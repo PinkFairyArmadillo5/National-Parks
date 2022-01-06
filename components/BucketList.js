@@ -14,13 +14,43 @@ function BucketList({ bucketList, setBucketList }) {
       });
   }, []);
 
-  const [updatedBucketList, setUpdatedBucketList] = useState(bucketList);
+  const [updatedBucketList, setUpdatedBucketList] = useState();
 
-  const handleDelete = (e) => {
-    const parkToDelete = e.target.getPark(bucketList.parkcode);
-    setUpdatedBucketList(
-      updatedBucketList.filter((park) => park.parkcode !== parkToDelete)
-    );
+  const handleDelete = (park) => {
+    console.log('line 27', park);
+    const deletedPark = park.parkname;
+    console.log('line 29', deletedPark);
+
+    const index = bucketList.indexOf(park);
+    console.log('line 25', index);
+
+    const deepCopyBL = [...bucketList];
+
+    const editbucketList = deepCopyBL.splice(index, 1);
+    console.log('line 28', editbucketList);
+
+    console.log('line 29', deepCopyBL);
+
+    setBucketList([deepCopyBL]);
+    console.log('new bucketlist', deepCopyBL);
+    console.log('BL line 36', bucketList);
+
+    const postOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        deletedPark: deletedPark,
+      }),
+    };
+    fetch('http://localhost:3000/db/deletePark', postOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('line 49 data returned from delete', data);
+      });
+    setUpdatedBucketList([...bucketList]);
   };
 
   return (
@@ -28,13 +58,15 @@ function BucketList({ bucketList, setBucketList }) {
       <h3>My Bucket List</h3>
       {bucketList.map((park, index) => (
         <div key={index}>
-          <span
+          <button
             className='deleteX'
-            parkcode={park.parkcode}
-            onClick={handleDelete}
+            park={park.parkname}
+            onClick={() => {
+              handleDelete(park);
+            }}
           >
             X
-          </span>
+          </button>
           {park.parkname}
         </div>
       ))}
