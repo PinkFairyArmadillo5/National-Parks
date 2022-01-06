@@ -45,8 +45,8 @@ npController.bucketlistAdd = (req, res, next) => {
 
 npController.deletePark = (req, res, next) => {
   const parkToDelete = req.body.park;
-  console.log('line 48 np controller', typeof parkToDelete);
-  console.log('parkToDelete controller', parkToDelete);
+  // console.log('line 48 np controller', typeof parkToDelete);
+  // console.log('parkToDelete controller', parkToDelete);
   const sql = `DELETE FROM bucketlist WHERE parkcode = '${parkToDelete}';`;
 
   db.query(sql)

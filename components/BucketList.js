@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 function BucketList({ bucketList, setBucketList }) {
   // const [bucketList, setBucketList] = useState([]);
 
+  const [updatedBucketList, setUpdatedBucketList] = useState();
+
   useEffect(() => {
     const bucketListQuery = `/db/initial-render`;
     fetch(bucketListQuery)
@@ -12,12 +14,11 @@ function BucketList({ bucketList, setBucketList }) {
         setBucketList(updatedBL);
         console.log('BucketList.js line 13', updatedBL);
       });
-  }, []);
+  }, [updatedBucketList]);
 
-  const [updatedBucketList, setUpdatedBucketList] = useState();
+  // const handleOnChange
 
   const handleDelete = (park) => {
-    console.log('line 27', park);
     const deletedPark = park.parkcode;
     console.log('line 29', deletedPark);
 
@@ -26,17 +27,14 @@ function BucketList({ bucketList, setBucketList }) {
 
     const deepCopyBL = [...bucketList];
 
-    const editbucketList = deepCopyBL.splice(index, 1);
-    console.log('line 28', editbucketList);
+    deepCopyBL.splice(index, 1);
+    console.log('line 29 after SPLICE', deepCopyBL);
 
-    console.log('line 29', deepCopyBL);
-
-    setBucketList([...deepCopyBL]);
-    console.log('new bucketlist', deepCopyBL);
-    console.log('BL line 36', bucketList);
+    setBucketList(deepCopyBL);
+    console.log('new bucketlist', bucketList);
 
     fetch('/db/deletePark', {
-      method: 'POST',
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -53,7 +51,7 @@ function BucketList({ bucketList, setBucketList }) {
         console.log('error in delete fetch:', err);
         next({ log: err });
       });
-    setUpdatedBucketList([...deepCopyBL]);
+    setUpdatedBucketList(deepCopyBL);
   };
 
   return (

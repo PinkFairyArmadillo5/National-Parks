@@ -20,7 +20,7 @@ dbRouter.post(
   }
 );
 
-dbRouter.post(
+dbRouter.delete(
   '/deletePark',
   npController.deletePark,
   npController.getParksFromBucketList,
