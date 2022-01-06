@@ -31,26 +31,29 @@ function BucketList({ bucketList, setBucketList }) {
 
     console.log('line 29', deepCopyBL);
 
-    setBucketList([deepCopyBL]);
+    setBucketList([...deepCopyBL]);
     console.log('new bucketlist', deepCopyBL);
     console.log('BL line 36', bucketList);
 
-    const postOptions = {
+    fetch('/db/deletePark', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        deletedPark: deletedPark,
+        park: deletedPark,
       }),
-    };
-    fetch('http://localhost:3000/db/deletePark', postOptions)
-      .then((res) => res.json())
+    })
+      .then((res) => res.text())
       .then((data) => {
         console.log('line 49 data returned from delete', data);
+      })
+      .catch((err) => {
+        console.log('error in delete fetch:', err);
+        next({ log: err });
       });
-    setUpdatedBucketList([...bucketList]);
+    setUpdatedBucketList([...deepCopyBL]);
   };
 
   return (

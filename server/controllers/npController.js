@@ -51,6 +51,7 @@ npController.deletePark = (req, res, next) => {
   db.query(sql, parkToDelete)
     .then((data) => {
       console.log('deleted!');
+      // next();
     })
     .catch((err) => {
       console.log(`error in npDelete ${parkToDelete}:`, err);
