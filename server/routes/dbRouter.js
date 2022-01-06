@@ -12,7 +12,7 @@ dbRouter.get(
 
 dbRouter.post(
   '/put-bucketlist',
-  npController.bucketlistCheckDuplicates,
+  // npController.bucketlistCheckDuplicates,
   npController.bucketlistAdd,
   npController.getParksFromBucketList,
   (req, res) => {
