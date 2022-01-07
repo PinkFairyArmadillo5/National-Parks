@@ -19,7 +19,7 @@ npController.getParksFromBucketList = (req, res, next) => {
 
 npController.bucketlistAdd = async (req, res, next) => {
   for (let i = 0; i < req.body.bucketListParks.length; i++) {
-    console.log(`index: ${i}, req.body: ${req.body.bucketListParks}`);
+    // console.log('req.body at start', req.body.bucketListParks);
 
     //if does contain dupe, exit loop
     const duplicateCheckQuery =
@@ -29,24 +29,30 @@ npController.bucketlistAdd = async (req, res, next) => {
       req.body.bucketListParks[i].fullName,
     ]);
 
-    console.log('MIA duplicateCheck', duplicateCheck);
+    //console.log('MIA duplicateCheck', duplicateCheck);
 
     if (duplicateCheck.rowCount === 0) {
-      console.log('MIA, new park! about to add to DB');
+      //  console.log('MIA, new park! about to add to DB');
 
       //if it doesnt contain dupe, run INSERT query
-      const bucketlistAdd = `INSERT INTO bucketlist (parkName, parkCode, lat, long)
-        VALUES($1, $2, $3, $4)`;
+      const bucketlistAdd = `INSERT INTO bucketlist (parkName, parkCode, lat, long, state)
+        VALUES($1, $2, $3, $4, $5)`;
+      let state = req.body.bucketListParks[i].states;
+      let finalState = state.substring(0, 2);
+      // console.log('this is finalstate:', finalState);
+
+      // console.log('loggin state', state);
       const values = [
         req.body.bucketListParks[i].fullName,
         req.body.bucketListParks[i].parkCode,
         req.body.bucketListParks[i].latitude,
         req.body.bucketListParks[i].longitude,
+        finalState,
       ];
 
-      console.log('MIA, checking req.body: ', req.body.bucketListParks);
+      // console.log('MIA, checking req.body: ', req.body.bucketListParks);
 
-      console.log('MIA, values before DB query: ', values);
+      //  console.log('MIA, values before DB query: ', values);
 
       const data = await db.query(bucketlistAdd, values);
 

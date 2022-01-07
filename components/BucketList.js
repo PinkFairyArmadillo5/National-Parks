@@ -6,6 +6,7 @@ function BucketList({
   setBucketList,
   rerenderBucketList,
   setRerenderBucketList,
+  selectedState,
 }) {
   // const [bucketList, setBucketList] = useState([]);
 
@@ -22,22 +23,14 @@ function BucketList({
       });
   }, [rerenderBucketList]);
 
-  // const handleOnChange
-
   const handleDelete = (park) => {
     const deletedPark = park.parkcode;
-    // console.log('line 29', deletedPark);
-
     const index = bucketList.indexOf(park);
-    // console.log('line 25', index);
-
     const deepCopyBL = [...bucketList];
 
     deepCopyBL.splice(index, 1);
-    // console.log('line 29 after SPLICE', deepCopyBL);
 
     setBucketList(deepCopyBL);
-    // console.log('new bucketlist', bucketList);
 
     fetch('/db/deletePark', {
       method: 'DELETE',
@@ -70,13 +63,14 @@ function BucketList({
             <button
               className='deleteX'
               park={park.parkname}
+              state={park.state}
               onClick={() => {
                 handleDelete(park);
               }}
             >
               <FaTrash />
             </button>
-            {park.parkname}
+            {park.parkname}, {park.state}
           </div>
         ))}
       </div>

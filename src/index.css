@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'NPSregular';
   src: url('NationalParkTypeFace/NationalPark-Regular.otf');
-  font-weight: normal;
-  font-style: normal;
+  /* font-weight: normal;
+  font-style: normal; */
 }
 
 @font-face {
@@ -73,7 +73,7 @@ h3 {
   height: 500px;
   width: 320px;
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   padding: 12px 24px;
   margin: 20px;
   font-size: 13px;
