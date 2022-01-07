@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { FaTrash } from 'react-icons/fa';
 
 function BucketList({ bucketList, setBucketList }) {
   // const [bucketList, setBucketList] = useState([]);
@@ -49,28 +50,30 @@ function BucketList({ bucketList, setBucketList }) {
       })
       .catch((err) => {
         console.log('error in delete fetch:', err);
-        next({ log: err });
+        //next({ log: err });
       });
     setUpdatedBucketList(deepCopyBL);
   };
 
   return (
-    <div>
+    <div className='bucketlist'>
       <h3>My Bucket List</h3>
-      {bucketList.map((park, index) => (
-        <div key={index}>
-          <button
-            className='deleteX'
-            park={park.parkname}
-            onClick={() => {
-              handleDelete(park);
-            }}
-          >
-            X
-          </button>
-          {park.parkname}
-        </div>
-      ))}
+      <div className='parkname'>
+        {bucketList.map((park, index) => (
+          <div key={index}>
+            <button
+              className='deleteX'
+              park={park.parkname}
+              onClick={() => {
+                handleDelete(park);
+              }}
+            >
+              <FaTrash />
+            </button>
+            {park.parkname}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
