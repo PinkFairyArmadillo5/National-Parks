@@ -11,16 +11,28 @@ function App() {
   const [parks, setParks] = useState([]);
 
   const [selectedState, setSelectedState] = useState('');
-  // const [submitButtonPressedInENPBS, setSubmitButtonPressedInENPBS] = useState(0);
+  const [rerenderBucketList, setRerenderBucketList] = useState(0);
   const [bucketList, setBucketList] = useState([]);
 
   return (
     <Router>
       {/* <ListOfStates setSelectedState={setSelectedState} /> */}
-      {/* <NavigationBar /> */}
-      <Map parks={parks} selectedState={selectedState} setSelectedState={setSelectedState} />
-      <EachNationalParkByState parks={parks} setParks={setParks} selectedState={selectedState} bucketList={bucketList} setBucketList={setBucketList} />
-      <BucketList bucketList={bucketList} setBucketList={setBucketList} />
+      <Map parks={parks} setSelectedState={setSelectedState} />
+      <EachNationalParkByState
+        parks={parks}
+        setParks={setParks}
+        selectedState={selectedState}
+        bucketList={bucketList}
+        setBucketList={setBucketList}
+        rerenderBucketList={rerenderBucketList}
+        setRerenderBucketList={setRerenderBucketList}
+      />
+      <BucketList
+        bucketList={bucketList}
+        setBucketList={setBucketList}
+        rerenderBucketList={rerenderBucketList}
+        setRerenderBucketList={setRerenderBucketList}
+      />
       <Trips />
     </Router>
   );
@@ -29,4 +41,4 @@ function App() {
 export default App;
 //set state again(passing curr state, append condition, spread op)
 //submitButtonPressedInENPBS={submitButtonPressedInENPBS}
-//submitButtonPressedInENPBS={submitButtonPressedInENPBS} setSubmitButtonPressedInENPBS={setSubmitButtonPressedInENPBS} 
+//submitButtonPressedInENPBS={submitButtonPressedInENPBS} setSubmitButtonPressedInENPBS={setSubmitButtonPressedInENPBS}

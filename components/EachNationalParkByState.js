@@ -1,7 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 
-function EachNationalParkByState({ parks, setParks, selectedState, bucketList, setBucketList }) {
+function EachNationalParkByState({
+  parks,
+  setParks,
+  selectedState,
+  bucketList,
+  setBucketList,
+  rerenderBucketList,
+  setRerenderBucketList,
+}) {
   //each state has more than one national park
   //function to return all
   // const [parks, setParks] = useState([]);
@@ -20,7 +28,15 @@ function EachNationalParkByState({ parks, setParks, selectedState, bucketList, s
   };
 
   const handleOnClick = () => {
-    const dataArr = checkedState.filter(el => el);
+    // console.log('clicked Add to Bucketlist');
+    const dataArr = checkedState.filter((el) => el);
+    // let dataArr = [];
+    // checkedState.forEach((el) => {
+    //   if (el !== false) {
+    //     dataArr.push(el);
+    //   }
+    // });
+    // console.log('log dataArr before put: ', dataArr);
     const postOptions = {
       method: 'POST',
       headers: {
@@ -34,12 +50,13 @@ function EachNationalParkByState({ parks, setParks, selectedState, bucketList, s
     fetch('http://localhost:3000/db/put-bucketlist', postOptions)
       .then((res) => res.json())
       .then((data) => {
+        setRerenderBucketList(++rerenderBucketList);
         // console.log('this is data', data);
       });
     // setSubmitButtonPressedInENPBS(++submitButtonPressedInENPBS);
-    console.log('dataArr=', dataArr)
-    setBucketList([...bucketList, dataArr[0].fullName])
-    console.log('bucketList var on line 50: ', bucketList)
+    console.log('dataArr=', dataArr);
+    // setBucketList([...bucketList, dataArr[0].fullName]);
+    console.log('bucketList var on line 50: ', bucketList);
   };
 
   useEffect(async () => {
