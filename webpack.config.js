@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+require('dotenv').config()
 
 module.exports = {
   mode: process.env.NODE_ENV,
@@ -33,6 +34,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/env', '@babel/react'],
+            plugins: ['@babel/plugin-transform-runtime'],
           },
         },
       },
@@ -48,5 +50,11 @@ module.exports = {
       title: 'development',
       template: './src/index.html',
     }),
+    new webpack.ProgressPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        REACT_APP_MAPBOX_API: JSON.stringify(process.env.REACT_APP_MAPBOX_API),
+      }
+    })
   ],
 };
