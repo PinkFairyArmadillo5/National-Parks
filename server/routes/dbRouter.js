@@ -12,7 +12,6 @@ dbRouter.get(
 
 dbRouter.post(
   '/put-bucketlist',
-  // npController.bucketlistCheckDuplicates,
   npController.bucketlistAdd,
   npController.getParksFromBucketList,
   (req, res) => {
@@ -21,12 +20,4 @@ dbRouter.post(
   }
 );
 
-dbRouter.delete(
-  '/deletePark',
-  npController.deletePark,
-  npController.getParksFromBucketList,
-  (req, res) => {
-    res.status(200).json(res.locals.parks);
-  }
-);
 module.exports = dbRouter;

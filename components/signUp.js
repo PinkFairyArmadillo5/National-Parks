@@ -24,3 +24,14 @@
 
     
 // }
+
+
+//// form  each text box to have its own habdler 
+
+// function handleChange(e){ 
+//     const stateToUpdate = e.target.name
+// //set the state, and update using syntax like
+//     //stateToUpdate: e.target.value
+// }
+
+// <input text name =  "username" onChange = () => 

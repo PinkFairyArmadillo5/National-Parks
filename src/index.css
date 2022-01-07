@@ -27,6 +27,7 @@ body {
   padding: 10px;
   background-color: 3273a3;
   overflow: scroll;
+  height: 350px;
   max-height: 10em;
   font-family: NPSregular;
 }
@@ -64,4 +65,24 @@ h3 {
 .parkname {
   margin: 10px;
   justify-content: center;
+}
+.each-park-by-state {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 500px;
+  width: 320px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  padding: 12px 24px;
+  margin: 20px;
+  font-size: 13px;
+  line-height: 2;
+  color: #6b6b76;
+  outline: none;
+  /* text-transform: uppercase; */
+}
+.onhover-popup {
+  font-size: 12px;
+  font-weight: 700;
 }

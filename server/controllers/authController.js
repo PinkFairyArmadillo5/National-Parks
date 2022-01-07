@@ -20,7 +20,7 @@ const values = [username, password, firstName, lastName, email];
 
 db.query(addUser, values)
  .then((data) => {
-// console.log(data)
+console.log(data)
 if (data) console.log('got data')
  })
 .catch ((err) => {

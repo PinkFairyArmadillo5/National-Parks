@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 
 function EachNationalParkByState({
+  parks,
+  setParks,
   selectedState,
   bucketList,
   setBucketList,
@@ -10,9 +12,9 @@ function EachNationalParkByState({
 }) {
   //each state has more than one national park
   //function to return all
-  const [parks, setParks] = useState([]);
+  // const [parks, setParks] = useState([]);
   const [checkedState, setCheckedState] = useState([]);
-  const dontFetchOnFirstRender = useRef(false);
+  // const dontFetchOnFirstRender = useRef(false);
   const handleOnChange = (position, parkData) => {
     const deepCopy = [...checkedState];
 
@@ -57,8 +59,9 @@ function EachNationalParkByState({
     console.log('bucketList var on line 50: ', bucketList);
   };
 
-  useEffect(() => {
-    if (dontFetchOnFirstRender.current === true) {
+  useEffect(async () => {
+    if (selectedState) {
+      // if (dontFetchOnFirstRender.current === true) {
       const postOptions = {
         method: 'POST',
         headers: {
@@ -73,35 +76,37 @@ function EachNationalParkByState({
         .then((res) => res.json())
         .then((data) => {
           setParks(data);
-          // console.log('data from ext API: ', data);
+          console.log('data from ext API: ', data);
           setCheckedState(new Array(data.length).fill(false));
           // console.log('line 38:', checkedState);
         });
-    } else {
-      dontFetchOnFirstRender.current = true;
     }
+    // } else {
+    //   dontFetchOnFirstRender.current = true;
+    // }
   }, [selectedState]);
 
   return (
-    <div className='scrollList'>
+    <div className='each-park-by-state'>
       <h2>List of National Parks in {selectedState}</h2>
       <div className='ListofParks'>
         {parks.map((park, index) => (
-          <label key={index}>
-            <input
-              type='checkbox'
-              // id={index}
-              // key={index} //commented these out and put "key" in <label> instead. Warning no longer appears in browser console.
-              name={park.fullName}
-              value={park.fullName}
-              onChange={() => {
-                handleOnChange(index, park);
-              }}
-              checked={checkedState[index]}
-            />
-            <h3>{park.fullName} </h3>
-            <h4>{park.description}</h4>
-          </label>
+          <div key={index} title={park.description}>
+            <label >
+              <input
+                type='checkbox'
+                className='park-checkbox'
+                name={park.fullName}
+                value={park.fullName}
+                onChange={() => {
+                  handleOnChange(index, park);
+                }}
+                checked={checkedState[index]}
+              />
+              <span>{park.fullName} </span>
+              {/* <h4>{park.description}</h4> */}
+            </label>
+          </div>
         ))}
       </div>
       <button className='addToBL' onClick={handleOnClick}>
