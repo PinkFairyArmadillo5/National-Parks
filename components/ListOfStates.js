@@ -1,5 +1,5 @@
 import React from 'react';
-import usStateConverter from 'us-state-converter';
+import { abbr } from 'us-state-converter';
 
 const allStatesInUS = [
   'Alaska',
@@ -57,7 +57,7 @@ const allStatesInUS = [
 
 function ListOfStates({ setSelectedState }) {
   return allStatesInUS.map((state, index) => (
-    <button onClick={() => setSelectedState(usStateConverter.abbr(state))} key={index}>
+    <button onClick={() => setSelectedState(abbr(state))} key={index}>
       {state}
     </button>
   ));
