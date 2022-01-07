@@ -59,7 +59,7 @@ function EachNationalParkByState({ parks, setParks, selectedState, bucketList, s
         .then((res) => res.json())
         .then((data) => {
           setParks(data);
-          // console.log('data from ext API: ', data);
+          console.log('data from ext API: ', data);
           setCheckedState(new Array(data.length).fill(false));
           // console.log('line 38:', checkedState);
         });

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 // import ListOfStates from '../components/ListOfStates';
+// import NavigationBar from '../components/NavBar';
 import EachNationalParkByState from '../components/EachNationalParkByState';
 import BucketList from '../components/BucketList';
 import Map from '../components/Map';
@@ -16,6 +17,7 @@ function App() {
   return (
     <Router>
       {/* <ListOfStates setSelectedState={setSelectedState} /> */}
+      {/* <NavigationBar /> */}
       <Map parks={parks} selectedState={selectedState} setSelectedState={setSelectedState} />
       <EachNationalParkByState parks={parks} setParks={setParks} selectedState={selectedState} bucketList={bucketList} setBucketList={setBucketList} />
       <BucketList bucketList={bucketList} setBucketList={setBucketList} />

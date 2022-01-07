@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import MapGL, { Source, Layer, Popup, Marker } from 'react-map-gl';
 import axios from 'axios';
 import { abbr } from 'us-state-converter';
-import { BsPinFill as Pin } from "react-icons/bs";
-import { IconContext } from "react-icons";
+import Pin from './sub-components/Pin'
+import ParkInfo from './sub-components/ParkInfo'
 
 function Map({ parks, selectedState, setSelectedState }) {
   const [statePolygons, setStatePolygons] = useState();
@@ -15,6 +15,7 @@ function Map({ parks, selectedState, setSelectedState }) {
     height: '100vh',
     zoom: 4,
   })
+  const [popupInfo, setPopupInfo] = useState(null);
 
   useEffect(async () => {
     const { data } = await axios.get('https://raw.githubusercontent.com/uber/react-map-gl/master/examples/.data/us-income.geojson');
@@ -53,16 +54,6 @@ function Map({ parks, selectedState, setSelectedState }) {
   }
   // const filter = useMemo(() => ['New York'], []);
 
-  const markers = parks && useMemo(() => parks.map(
-    park => (
-      <IconContext.Provider value={{ color: 'crimson', size: '1.5em' }}>
-        <Marker key={park.fullName} longitude={Number(park.longitude)} latitude={Number(park.latitude)} >
-          <Pin />
-        </Marker>
-      </IconContext.Provider>
-    )
-  ), [parks]);
-
   const layerStyle = {
     id: 'data',
     type: 'fill',
@@ -82,30 +73,45 @@ function Map({ parks, selectedState, setSelectedState }) {
   };
 
   return (
-    <MapGL
-      {...viewport}
-      mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API}
-      mapStyle='mapbox://styles/mapbox/outdoors-v11'
-      onViewportChange={setViewport}
-      onHover={onHover}
-      onClick={handleOnClick}
-    >
-      <Source type="geojson" data={statePolygons}>
-        <Layer {...layerStyle} />
-        {/* <Layer beforeId="waterway-label" {...layerStyle2} filter={filter} /> */}
-      </Source>
-      {markers}
-      {hoverInfo?.feature.properties.name && (
-        <Popup
-          className='onhover-popup'
-          longitude={hoverInfo.longitude}
-          latitude={hoverInfo.latitude}
-          closeButton={false}
-        >
-          {hoverInfo.feature.properties.name}
-        </Popup>
-      )}
-    </MapGL>
+    <>
+      <MapGL
+        {...viewport}
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API}
+        mapStyle='mapbox://styles/mapbox/outdoors-v11'
+        onViewportChange={setViewport}
+        onHover={onHover}
+        onClick={handleOnClick}
+      >
+        <Source type="geojson" data={statePolygons}>
+          <Layer {...layerStyle} />
+          {/* <Layer beforeId="waterway-label" {...layerStyle2} filter={filter} /> */}
+        </Source>
+
+        <Pin parks={parks} onClick={setPopupInfo} />
+        {popupInfo && (
+          <Popup
+            tipSize={5}
+            anchor="top"
+            longitude={Number(popupInfo.longitude)}
+            latitude={Number(popupInfo.latitude)}
+            closeOnClick={false}
+            onClose={setPopupInfo}
+          >
+            <ParkInfo park={popupInfo} />
+          </Popup>
+        )}
+        {hoverInfo?.feature.properties.name && (
+          <Popup
+            className='onhover-popup'
+            longitude={hoverInfo.longitude}
+            latitude={hoverInfo.latitude}
+            closeButton={false}
+          >
+            {hoverInfo.feature.properties.name}
+          </Popup>
+        )}
+      </MapGL>
+    </>
   );
 }
 
