@@ -5,6 +5,7 @@ import EachNationalParkByState from '../components/EachNationalParkByState';
 import BucketList from '../components/BucketList';
 import Map from '../components/Map';
 import Trips from '../components/Trips';
+import SignUp from './../components/signUp'
 
 function App() {
   const [selectedState, setSelectedState] = useState('');
@@ -13,6 +14,7 @@ function App() {
 
   return (
     <Router>
+      {/* <SignUp/> */}
       <ListOfStates setSelectedState={setSelectedState} />
       <EachNationalParkByState selectedState={selectedState} bucketList={bucketList} setBucketList={setBucketList} />
       <BucketList bucketList={bucketList} setBucketList={setBucketList} />

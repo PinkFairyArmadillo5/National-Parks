@@ -6,6 +6,10 @@ require('dotenv').config();
 const cors = require('cors');
 const apiRouter = require('./routes/apiRouter');
 const dbRouter = require('./routes/dbRouter');
+const authRouter = require('./routes/authRouter');
+const cookieParser = require('cookie-parser');
+
+
 
 const PORT = process.env.PORT;
 // const NPS_API_KEY = process.env.NPS_API_KEY;
@@ -17,6 +21,8 @@ app.use(express.json());
 
 app.use('/get-state-parks', apiRouter);
 app.use('/db', dbRouter), () => console.log('dbRouter');
+app.use('/nps', authRouter);
+
 // app.use('/bucketlistAdd', dbRouter), () => console.log('dbRouter');
 // app.get('/', (req, res) => {
 //   return res.sendFile(path.join(__dirname, '../src/index.html'));
