@@ -21,4 +21,12 @@ dbRouter.post(
   }
 );
 
+dbRouter.delete(
+  '/deletePark',
+  npController.deletePark,
+  npController.getParksFromBucketList,
+  (req, res) => {
+    res.status(200).json(res.locals.parks);
+  }
+);
 module.exports = dbRouter;

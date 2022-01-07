@@ -21,4 +21,4 @@ Future releases will include: - An interactive map pinpointing the location of t
 The team sincerely thanks the following:
 -Sam Arnold, one-of-a-kind fellow, mentor, and all-around good human being.
 -Codesmith Administration, notably Reid Klarsfeld, Matt Severyn and Laura Forden.
--US National Parks, an often overlooked privilege in the US.
+-US National Parks, an often overlooked privilege in the US. -https://nationalparktypeface.com/ for use of their custom font family

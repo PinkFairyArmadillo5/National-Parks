@@ -1,12 +1,67 @@
+@font-face {
+  font-family: 'NPSregular';
+  src: url('NationalParkTypeFace/NationalPark-Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NPSbold';
+  src: url('NationalParkTypeFace/NationalPark-Heavy.otf');
+}
+
+@font-face {
+  font-family: 'NPSlight';
+  src: url('NationalParkTypeFace/NationalPark-Thin.otf');
+}
+
+@font-face {
+  font-family: 'NPSoutline';
+  src: url('NationalParkTypeFace/NationalPark-Outline.otf');
+}
+
+body {
+}
+
 .ListofParks {
   padding: 10px;
-  background-color: yellow;
+  background-color: 3273a3;
   overflow: scroll;
-
   max-height: 10em;
+  font-family: NPSregular;
+}
+
+.addToBL {
+  margin: 10px;
 }
 
 .scrollList {
   padding: 10px;
-  background-color: powderblue;
+  margin: 10px;
+  background-color: lightgrey;
+}
+
+.bucketlist {
+  display: flexbox;
+  justify-content: center;
+  margin: 10px;
+  border-color: 3273a3;
+  font-family: NPSlight;
+}
+
+h3 {
+  margin: 10px;
+}
+.deleteX {
+  border: none;
+  outline: 0 !important;
+  padding: 5 px;
+  color: gray;
+  margin: 5px;
+  background-color: #fff;
+}
+
+.parkname {
+  margin: 10px;
+  justify-content: center;
 }
