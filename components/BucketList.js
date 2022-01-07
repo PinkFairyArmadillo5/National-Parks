@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 
-function BucketList({ bucketList, setBucketList }) {
+function BucketList({
+  bucketList,
+  setBucketList,
+  rerenderBucketList,
+  setRerenderBucketList,
+}) {
   // const [bucketList, setBucketList] = useState([]);
 
-  const [updatedBucketList, setUpdatedBucketList] = useState();
+  // const [updatedBucketList, setUpdatedBucketList] = useState();
 
   useEffect(() => {
     const bucketListQuery = `/db/initial-render`;
@@ -15,7 +20,7 @@ function BucketList({ bucketList, setBucketList }) {
         setBucketList(updatedBL);
         console.log('BucketList.js line 13', updatedBL);
       });
-  }, [updatedBucketList]);
+  }, [rerenderBucketList]);
 
   // const handleOnChange
 
@@ -52,7 +57,8 @@ function BucketList({ bucketList, setBucketList }) {
         console.log('error in delete fetch:', err);
         //next({ log: err });
       });
-    setUpdatedBucketList(deepCopyBL);
+    setRerenderBucketList(++rerenderBucketList);
+    // setUpdatedBucketList(deepCopyBL);
   };
 
   return (

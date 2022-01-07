@@ -8,14 +8,23 @@ import Trips from '../components/Trips';
 
 function App() {
   const [selectedState, setSelectedState] = useState('');
-  // const [submitButtonPressedInENPBS, setSubmitButtonPressedInENPBS] = useState(0);
+  const [rerenderBucketList, setRerenderBucketList] = useState(0);
   const [bucketList, setBucketList] = useState([]);
 
   return (
     <Router>
       <ListOfStates setSelectedState={setSelectedState} />
-      <EachNationalParkByState selectedState={selectedState} bucketList={bucketList} setBucketList={setBucketList} />
-      <BucketList bucketList={bucketList} setBucketList={setBucketList} />
+      <EachNationalParkByState
+        selectedState={selectedState}
+        bucketList={bucketList}
+        setBucketList={setBucketList}
+      />
+      <BucketList
+        bucketList={bucketList}
+        setBucketList={setBucketList}
+        rerenderBucketList={rerenderBucketList}
+        setRerenderBucketList={setRerenderBucketList}
+      />
       <Map />
       <Trips />
     </Router>
@@ -25,4 +34,4 @@ function App() {
 export default App;
 //set state again(passing curr state, append condition, spread op)
 //submitButtonPressedInENPBS={submitButtonPressedInENPBS}
-//submitButtonPressedInENPBS={submitButtonPressedInENPBS} setSubmitButtonPressedInENPBS={setSubmitButtonPressedInENPBS} 
+//submitButtonPressedInENPBS={submitButtonPressedInENPBS} setSubmitButtonPressedInENPBS={setSubmitButtonPressedInENPBS}
