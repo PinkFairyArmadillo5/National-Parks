@@ -6,7 +6,6 @@ function BucketList({
   setBucketList,
   rerenderBucketList,
   setRerenderBucketList,
-  selectedState,
 }) {
   // const [bucketList, setBucketList] = useState([]);
 

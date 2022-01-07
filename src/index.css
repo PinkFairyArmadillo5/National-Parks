@@ -21,6 +21,12 @@
 }
 
 body {
+  background-color: rgb(252, 235, 186);
+}
+
+h1 {
+  font-family: NPSregular;
+  color: rgb(35, 104, 152);
 }
 
 .ListofParks {
@@ -32,26 +38,22 @@ body {
   font-family: NPSregular;
 }
 
-.addToBL {
-  margin: 10px;
-}
-
-.scrollList {
-  padding: 10px;
-  margin: 10px;
-  background-color: lightgrey;
-}
-
 .bucketlist {
   display: flexbox;
   justify-content: center;
   margin: 10px;
-  border-color: 3273a3;
+  border-color: rgb(35, 104, 152);
   font-family: NPSlight;
 }
 
+h2 {
+  color: rgb(35, 104, 152);
+  font-family: NPSlight;
+}
 h3 {
   margin: 10px;
+  color: rgb(35, 104, 152);
+  font-family: NPSlight;
 }
 .deleteX {
   border: none;
@@ -59,12 +61,14 @@ h3 {
   padding: 5 px;
   color: gray;
   margin: 5px;
-  background-color: #fff;
+  background-color: rgb(252, 235, 186);
 }
 
 .parkname {
   margin: 10px;
   justify-content: center;
+  color: rgb(35, 104, 152);
+  font-family: NPSlight;
 }
 .each-park-by-state {
   position: absolute;
@@ -78,11 +82,25 @@ h3 {
   margin: 20px;
   font-size: 13px;
   line-height: 2;
-  color: #6b6b76;
+  font-family: NPSlight;
+  color: rgb(35, 104, 152);
   outline: none;
   /* text-transform: uppercase; */
 }
+
+.addToBL {
+  margin: 10px;
+}
+.park-checkbox {
+  color: rgb(216, 163, 123);
+}
+.scrollList {
+  padding: 10px;
+  margin: 10px;
+}
 .onhover-popup {
+  color: rgb(35, 104, 152);
+  font-family: NPSbold;
   font-size: 12px;
   font-weight: 700;
 }

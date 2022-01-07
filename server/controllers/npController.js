@@ -37,17 +37,13 @@ npController.bucketlistAdd = async (req, res, next) => {
       //if it doesnt contain dupe, run INSERT query
       const bucketlistAdd = `INSERT INTO bucketlist (parkName, parkCode, lat, long, state)
         VALUES($1, $2, $3, $4, $5)`;
-      let state = req.body.bucketListParks[i].states;
-      let finalState = state.substring(0, 2);
-      // console.log('this is finalstate:', finalState);
 
-      // console.log('loggin state', state);
       const values = [
         req.body.bucketListParks[i].fullName,
         req.body.bucketListParks[i].parkCode,
         req.body.bucketListParks[i].latitude,
         req.body.bucketListParks[i].longitude,
-        finalState,
+        req.body.selectedState,
       ];
 
       // console.log('MIA, checking req.body: ', req.body.bucketListParks);

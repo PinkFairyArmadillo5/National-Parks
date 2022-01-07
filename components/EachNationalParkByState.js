@@ -96,6 +96,7 @@ function EachNationalParkByState({
             <label>
               <input
                 type='checkbox'
+                id='toggle'
                 className='park-checkbox'
                 name={park.fullName}
                 value={park.fullName}
@@ -104,7 +105,7 @@ function EachNationalParkByState({
                 }}
                 checked={checkedState[index]}
               />
-              <span>
+              <span className='popupParks'>
                 {park.fullName}, {selectedState}{' '}
               </span>
               {/* <h4>{park.description}</h4> */}
