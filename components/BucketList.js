@@ -18,7 +18,7 @@ function BucketList({
       .then((updatedBL) => {
         // console.log('updated Bucket List: ', updatedBL);
         setBucketList(updatedBL);
-        console.log('BucketList.js line 13', updatedBL);
+        // console.log('BucketList.js line 13', updatedBL);
       });
   }, [rerenderBucketList]);
 
@@ -26,18 +26,18 @@ function BucketList({
 
   const handleDelete = (park) => {
     const deletedPark = park.parkcode;
-    console.log('line 29', deletedPark);
+    // console.log('line 29', deletedPark);
 
     const index = bucketList.indexOf(park);
-    console.log('line 25', index);
+    // console.log('line 25', index);
 
     const deepCopyBL = [...bucketList];
 
     deepCopyBL.splice(index, 1);
-    console.log('line 29 after SPLICE', deepCopyBL);
+    // console.log('line 29 after SPLICE', deepCopyBL);
 
     setBucketList(deepCopyBL);
-    console.log('new bucketlist', bucketList);
+    // console.log('new bucketlist', bucketList);
 
     fetch('/db/deletePark', {
       method: 'DELETE',

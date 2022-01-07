@@ -1,7 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 
-function EachNationalParkByState({ selectedState, bucketList, setBucketList }) {
+function EachNationalParkByState({
+  selectedState,
+  bucketList,
+  setBucketList,
+  rerenderBucketList,
+  setRerenderBucketList,
+}) {
   //each state has more than one national park
   //function to return all
   const [parks, setParks] = useState([]);
@@ -42,11 +48,12 @@ function EachNationalParkByState({ selectedState, bucketList, setBucketList }) {
     fetch('http://localhost:3000/db/put-bucketlist', postOptions)
       .then((res) => res.json())
       .then((data) => {
+        setRerenderBucketList(++rerenderBucketList);
         // console.log('this is data', data);
       });
     // setSubmitButtonPressedInENPBS(++submitButtonPressedInENPBS);
     console.log('dataArr=', dataArr);
-    setBucketList([...bucketList, dataArr[0].fullName]);
+    // setBucketList([...bucketList, dataArr[0].fullName]);
     console.log('bucketList var on line 50: ', bucketList);
   };
 

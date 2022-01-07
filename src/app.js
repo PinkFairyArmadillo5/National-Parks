@@ -18,6 +18,8 @@ function App() {
         selectedState={selectedState}
         bucketList={bucketList}
         setBucketList={setBucketList}
+        rerenderBucketList={rerenderBucketList}
+        setRerenderBucketList={setRerenderBucketList}
       />
       <BucketList
         bucketList={bucketList}
