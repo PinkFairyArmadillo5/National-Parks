@@ -74,9 +74,9 @@ h3 {
   position: absolute;
   top: 0;
   right: 0;
-  height: 500px;
+  height: 250px;
   width: 320px;
-  background: #fff;
+  background: rgb(199, 116, 110);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   padding: 12px 24px;
   margin: 20px;
