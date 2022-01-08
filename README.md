@@ -2,9 +2,9 @@
 
 This project seeks to offer information on the [US National Parks](https://www.nps.gov/index.htm), with features to add parks to a user's bucket list, create a user-specified trips log to plan out visiting National Parks. The project uses Mapbox GL to render a world map with highlights on US States, where user interactivity renders the individual National Parks and Sites.
 
-Using an API found [here](https://www.nps.gov/subjects/developer/api-documentation.htm#/), the team built functionality to store user-selected park data from the NPS API into a user-dedicated bucketlist and trip SQL tables. PostgreSQL functionality was achieved via [Elephant SQL](https://www.elephantsql.com/)].
+Using an API found [here](https://www.nps.gov/subjects/developer/api-documentation.htm#/), the team built functionality to store user-selected park data from the NPS API into a user-dedicated bucketlist and trip SQL tables. PostgreSQL functionality was achieved via [Elephant SQL](https://www.elephantsql.com/).
 
-This project was developed with Javascript and React Hooks. The package.json contains npm installation of Mapbox GL, CORS, Express, Axios, Nodemon, pgAdmin for the PostgreSQL, webpack, and a US state name to abbreviation conversion tool. Other package details are related to style, proxy server, and various webpack loaders. Note: Mapbox GL may require its own npm install found [here]](<https://www.npmjs.com/package/mapbox-gl>).
+This project was developed with Javascript React Hooks and Router. The package.json contains npm installation of Mapbox GL, CORS, Express, Axios, Nodemon, pgAdmin for the PostgreSQL, webpack, and a US state name to abbreviation conversion tool. Other package details are related to style, proxy server, and various webpack loaders. Note: Mapbox GL may require its own npm install found [here](https://www.npmjs.com/package/mapbox-gl).
 
 Future releases will include:
 
