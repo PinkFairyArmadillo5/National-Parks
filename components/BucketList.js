@@ -54,8 +54,7 @@ function BucketList({
   };
 
   return (
-    <div className='bucketlist'>
-      <h3>My Bucket List</h3>
+    <div>
       <div className='parkname'>
         {bucketList.map((park, index) => (
           <div key={index}>

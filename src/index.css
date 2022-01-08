@@ -21,24 +21,42 @@
 }
 
 body {
-  background-color: rgb(252, 235, 186);
+  background-color: rgb(172, 166, 149);
+  margin: 10px;
+  padding: 10px;
+}
+.mapboxgl-marker {
+  font-family: 'NPSlight';
 }
 
 h1 {
   font-family: NPSregular;
   color: rgb(35, 104, 152);
+  margin: 10px;
 }
 
-.ListofParks {
-  padding: 10px;
-  background-color: 3273a3;
-  overflow: scroll;
-  overflow-x: hidden;
-  height: 350px;
-  max-height: 50em;
+.modal-body {
+  background-color: rgb(247, 233, 210);
+}
+.modal-header {
+  background-color: rgb(248, 230, 200);
+  color: rgb(35, 104, 152);
+  font-family: NPSregular;
+  border-color: rgb(35, 104, 152);
+}
+.mapboxgl-popup-content {
+  color: rgb(35, 104, 152);
   font-family: NPSregular;
 }
 
+a {
+  color: rgb(35, 104, 152);
+  font-family: NPSlight;
+}
+.modal-footer {
+  background-color: rgb(248, 230, 200);
+  border-color: rgb(35, 104, 152);
+}
 .bucketlist {
   display: flexbox;
   justify-content: center;
@@ -47,11 +65,36 @@ h1 {
   font-family: NPSlight;
 }
 
+.btn-secondary {
+  color: rgb(10, 81, 131);
+  font-family: NPSlight;
+  font-size: 16px;
+  background-color: #cddbe6;
+  border-color: #8b9cad;
+  padding: 5px;
+  border-radius: 10px;
+}
+openBLbutton {
+  font-family: NPSlight;
+  color: rgb(35, 104, 152);
+}
+openParkByStatebutton {
+  font-family: NPSlight;
+  color: rgb(35, 104, 152);
+}
+
+h3 {
+  background-color: rgb(248, 230, 200);
+  color: rgb(35, 104, 152);
+  font-family: NPSregular;
+  border-color: rgb(35, 104, 152);
+}
+
 h2 {
   color: rgb(35, 104, 152);
   font-family: NPSlight;
 }
-h3 {
+bucketlistTitle {
   margin: 10px;
   color: rgb(35, 104, 152);
   font-family: NPSlight;
@@ -62,7 +105,7 @@ h3 {
   padding: 5 px;
   color: gray;
   margin: 5px;
-  background-color: rgb(252, 235, 186);
+  background-color: rgb(247, 233, 210);
 }
 
 .parkname {
@@ -71,13 +114,23 @@ h3 {
   color: rgb(35, 104, 152);
   font-family: NPSlight;
 }
+.ListofParks {
+  padding: 10px;
+  background-color: rgb(247, 233, 210);
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 350px;
+  max-height: 50em;
+  font-family: NPSlight;
+}
+
 .each-park-by-state {
   position: absolute;
   top: 0;
   right: 0;
   height: 500px;
   width: 350px;
-  background: #fff;
+  background-color: rgb(248, 230, 200);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   padding: 12px 24px;
   margin: 20px;
@@ -91,10 +144,22 @@ h3 {
 }
 
 .addToBL {
-  margin: 10px;
+  margin: 25px;
+  color: rgb(10, 81, 131);
+  font-family: NPSregular;
+  font-size: 10px;
+  background-color: #cddbe6;
+  border-color: #8b9cad;
+  padding: 3px;
+  border-radius: 10px;
 }
+
 .park-checkbox {
   color: rgb(216, 163, 123);
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid black;
+  background-color: rgb(216, 163, 123);
 }
 .scrollList {
   padding: 10px;
@@ -105,4 +170,9 @@ h3 {
   font-family: NPSbold;
   font-size: 12px;
   font-weight: 700;
+}
+
+mapboxgl-popup mapboxgl-popup-anchor-bottom-right onhover-popup {
+  color: rgb(35, 104, 152);
+  font-family: NPSlight;
 }
