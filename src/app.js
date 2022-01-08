@@ -23,13 +23,13 @@ function App() {
 
   return ( 
  <Router>
-       <Link to="/login">LOGIN</Link> 
+       {/* <Link to="/login">LOGIN</Link>  */}
       {/* <ListOfStates setSelectedState={setSelectedState} />  */}
-      <Routes>
+      {/* <Routes> */}
 
-      <Route exact path="/login" component={Login} /> 
-
-      </Routes>
+      {/* <Route exact path="/login" component={Login} />  */}
+{/* 
+      </Routes> */}
       {/* <Login /> */}
       <Map parks={parks} setSelectedState={setSelectedState} />
       <EachNationalParkByState
