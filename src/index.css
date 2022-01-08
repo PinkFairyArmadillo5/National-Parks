@@ -21,12 +21,15 @@
 }
 
 body {
-  background-color: rgb(252, 235, 186);
+  background-color: rgb(172, 166, 149);
+  margin: 10px;
+  padding: 10px;
 }
 
 h1 {
   font-family: NPSregular;
   color: rgb(35, 104, 152);
+  margin: 10px;
 }
 
 .ListofParks {
@@ -38,7 +41,20 @@ h1 {
   max-height: 50em;
   font-family: NPSregular;
 }
+.modal-body {
+  background-color: rgb(247, 233, 210);
+}
+.modal-header {
+  background-color: rgb(248, 230, 200);
+  color: rgb(35, 104, 152);
+  font-family: NPSregular;
+  border-color: rgb(35, 104, 152);
+}
 
+.modal-footer {
+  background-color: rgb(248, 230, 200);
+  border-color: rgb(35, 104, 152);
+}
 .bucketlist {
   display: flexbox;
   justify-content: center;
@@ -47,11 +63,29 @@ h1 {
   font-family: NPSlight;
 }
 
+.btn-secondary {
+  color: rgb(10, 81, 131);
+  font-family: NPSlight;
+  font-size: 16px;
+  background-color: #cddbe6;
+  border-color: #8b9cad;
+  padding: 5px;
+  border-radius: 10px;
+}
+openBLbutton {
+  font-family: NPSlight;
+  color: rgb(35, 104, 152);
+}
+openParkByStatebutton {
+  font-family: NPSlight;
+  color: rgb(35, 104, 152);
+}
+
 h2 {
   color: rgb(35, 104, 152);
   font-family: NPSlight;
 }
-h3 {
+bucketlistTitle {
   margin: 10px;
   color: rgb(35, 104, 152);
   font-family: NPSlight;
@@ -62,7 +96,7 @@ h3 {
   padding: 5 px;
   color: gray;
   margin: 5px;
-  background-color: rgb(252, 235, 186);
+  background-color: rgb(247, 233, 210);
 }
 
 .parkname {
