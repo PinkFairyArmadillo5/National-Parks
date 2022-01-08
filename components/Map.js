@@ -11,8 +11,8 @@ function Map({ parks, selectedState, setSelectedState }) {
   const [viewport, setViewport] = useState({
     latitude: 37.0902,
     longitude: -95.7129,
-    width: '98vw',
-    height: '100vh',
+    width: '100vw',
+    height: '94vh',
     zoom: 4,
   })
   const [popupInfo, setPopupInfo] = useState(null);
