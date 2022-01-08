@@ -20,14 +20,19 @@ const values = [username, password, firstName, lastName, email];
 
 db.query(addUser, values)
  .then((data) => {
-console.log(data)
-if (data) console.log('got data')
+// console.log(data)
+if (data) return res.redirect('/parks')// need to add redirect to login
+
+next()
  })
 .catch ((err) => {
-console.log(err)
+// console.log(err)
+if (err) return res.send('please try again')// need to add alert box and redirect back to sign up 
+// need to redirect somewhere but for now we're ok
+
 });
 
-next();
+// next();
 // if no error then redirect to login page 
 
 },
@@ -48,13 +53,13 @@ const container = {};
 db.query(findUser, where)
 
  .then((data) => {
-    // console.log("sam is here")
-    // console.log(data)
-    // if (data) console.log('got data')
-// if (!data) console.log("green")
+  if (data.rowCount === 1) return res.redirect('/parks'); // need to add a redirect to homepage
+  if (data.rowCount === 0) return res.send('please try again'); // need to add an alert box and need to try to login again 
+//   console.log(data)
  })
 .catch ((err) => {
-console.log(err)
+// console.log("we gots problems")
+// if error then we can route back to log in
 })
 ///data
 

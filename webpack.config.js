@@ -7,6 +7,7 @@ module.exports = {
   mode: process.env.NODE_ENV,
   devServer: {
     static: path.join(__dirname, 'build'),
+    historyApiFallback: true,
     compress: true,
     port: 8080,
     proxy: {

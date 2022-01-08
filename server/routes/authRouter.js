@@ -24,7 +24,7 @@ authRouter.post('/login', authController.verifyUser,
 
 // have link to reset password
 
-
+module.exports = authRouter;
 
 
 

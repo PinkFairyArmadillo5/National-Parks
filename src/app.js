@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+// updated by Jess
+// import React, { component} from 'react';
+// updated by Jess
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+
 // import ListOfStates from '../components/ListOfStates';
 // import NavigationBar from '../components/NavBar';
 import EachNationalParkByState from '../components/EachNationalParkByState';
 import BucketList from '../components/BucketList';
 import Map from '../components/Map';
 import Trips from '../components/Trips';
-import SignUp from './../components/signUp'
+import SignUp from '../components/signUp';
+import Login from '../components/login';
 
 function App() {
   const [parks, setParks] = useState([]);
@@ -15,9 +21,16 @@ function App() {
   const [rerenderBucketList, setRerenderBucketList] = useState(0);
   const [bucketList, setBucketList] = useState([]);
 
-  return (
-    <Router>
-      {/* <ListOfStates setSelectedState={setSelectedState} /> */}
+  return ( 
+ <Router>
+       <Link to="/login">LOGIN</Link> 
+      {/* <ListOfStates setSelectedState={setSelectedState} />  */}
+      <Routes>
+
+      <Route exact path="/login" component={Login} /> 
+
+      </Routes>
+      {/* <Login /> */}
       <Map parks={parks} setSelectedState={setSelectedState} />
       <EachNationalParkByState
         parks={parks}
@@ -34,8 +47,10 @@ function App() {
         rerenderBucketList={rerenderBucketList}
         setRerenderBucketList={setRerenderBucketList}
       />
-      <Trips />
+      <Trips /> 
+    
     </Router>
+  
   );
 }
 
