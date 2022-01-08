@@ -17,7 +17,7 @@ function Pins({ parks, onClick }) {
                 viewBox="0 0 24 24"
                 style={{
                     cursor: 'pointer',
-                    fill: '#dd0050',
+                    fill: park.designation.includes('Trail') ? '#228B22' : '#dd0050',
                     stroke: 'none',
                     transform: `translate(${-SIZE / 2}px,${-SIZE}px)`
                 }}
