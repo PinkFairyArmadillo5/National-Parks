@@ -43,7 +43,7 @@ npController.bucketlistAdd = async (req, res, next) => {
         req.body.bucketListParks[i].parkCode,
         req.body.bucketListParks[i].latitude,
         req.body.bucketListParks[i].longitude,
-        req.body.selectedState,
+        req.body.state,
       ];
 
       // console.log('MIA, checking req.body: ', req.body.bucketListParks);
