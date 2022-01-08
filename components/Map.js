@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import MapGL, { Source, Layer, Popup, Marker } from 'react-map-gl';
 import axios from 'axios';
 import { abbr } from 'us-state-converter';
-import Pin from './sub-components/Pin'
-import ParkInfo from './sub-components/ParkInfo'
+import Pin from './sub-components/Pin';
+import ParkInfo from './sub-components/ParkInfo';
 
 function Map({ parks, selectedState, setSelectedState }) {
   const [statePolygons, setStatePolygons] = useState();
@@ -13,45 +13,46 @@ function Map({ parks, selectedState, setSelectedState }) {
     longitude: -95.7129,
     width: '100vw',
     height: '94vh',
-    zoom: 4,
-  })
+    zoom: 3.5,
+  });
   const [popupInfo, setPopupInfo] = useState(null);
 
   useEffect(async () => {
-    const { data } = await axios.get('https://raw.githubusercontent.com/uber/react-map-gl/master/examples/.data/us-income.geojson');
+    const { data } = await axios.get(
+      'https://raw.githubusercontent.com/uber/react-map-gl/master/examples/.data/us-income.geojson'
+    );
     setStatePolygons(data);
   }, []);
 
-  const onHover = useCallback(event => {
+  const onHover = useCallback((event) => {
     const {
       features,
       srcEvent: { offsetX, offsetY },
-      lngLat: [longitude, latitude]
+      lngLat: [longitude, latitude],
     } = event;
     const hoveredFeature = features && features[0];
     // console.log(hoveredFeature)
     setHoverInfo(
       hoveredFeature?.properties.income
         ? {
-          feature: hoveredFeature,
-          x: offsetX,
-          y: offsetY,
-          longitude,
-          latitude
-        }
+            feature: hoveredFeature,
+            x: offsetX,
+            y: offsetY,
+            longitude,
+            latitude,
+          }
         : null
     );
-
   }, []);
 
   const handleOnClick = () => {
     const abbrStateName = abbr(hoverInfo?.feature.properties.name);
-    abbrStateName.length === 2 && setSelectedState(abbrStateName)
+    abbrStateName.length === 2 && setSelectedState(abbrStateName);
     //want to implement:
     //zoom to clicked U.S. state
     //highlight selected U.S. state to a darker blue hue
     //put pins on all parks on selected U.S. state
-  }
+  };
   // const filter = useMemo(() => ['New York'], []);
 
   const layerStyle = {
@@ -75,6 +76,7 @@ function Map({ parks, selectedState, setSelectedState }) {
   return (
     <>
       <MapGL
+        className='mapboxgl-canvas'
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API}
         mapStyle='mapbox://styles/mapbox/outdoors-v11'
@@ -82,7 +84,7 @@ function Map({ parks, selectedState, setSelectedState }) {
         onHover={onHover}
         onClick={handleOnClick}
       >
-        <Source type="geojson" data={statePolygons}>
+        <Source type='geojson' data={statePolygons}>
           <Layer {...layerStyle} />
           {/* <Layer beforeId="waterway-label" {...layerStyle2} filter={filter} /> */}
         </Source>
@@ -91,7 +93,7 @@ function Map({ parks, selectedState, setSelectedState }) {
         {popupInfo && (
           <Popup
             tipSize={5}
-            anchor="top"
+            anchor='top'
             longitude={Number(popupInfo.longitude)}
             latitude={Number(popupInfo.latitude)}
             closeOnClick={false}

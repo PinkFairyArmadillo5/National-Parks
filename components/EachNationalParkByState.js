@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
-import { BsX } from "react-icons/bs";
+import { BsX } from 'react-icons/bs';
 
 function EachNationalParkByState({
   parks,
@@ -11,7 +11,7 @@ function EachNationalParkByState({
   rerenderBucketList,
   setRerenderBucketList,
   showENPBS,
-  setShowENPBS
+  setShowENPBS,
 }) {
   //each state has more than one national park
   //function to return all
@@ -48,6 +48,7 @@ function EachNationalParkByState({
       },
       body: JSON.stringify({
         bucketListParks: dataArr,
+        state: selectedState,
       }),
     };
     fetch('http://localhost:3000/db/put-bucketlist', postOptions)
@@ -60,7 +61,7 @@ function EachNationalParkByState({
     console.log('dataArr=', dataArr);
     // setBucketList([...bucketList, dataArr[0].fullName]);
     console.log('bucketList var on line 50: ', bucketList);
-    setCheckedState(new Array(checkedState.length).fill(false))
+    setCheckedState(new Array(checkedState.length).fill(false));
   };
 
   useEffect(async () => {
@@ -79,7 +80,9 @@ function EachNationalParkByState({
       fetch('/get-state-parks', postOptions)
         .then((res) => res.json())
         .then((data) => {
-          const filterOutParksOnlyInState = data.filter(x => x.addresses[0].stateCode === selectedState);
+          const filterOutParksOnlyInState = data.filter(
+            (x) => x.addresses[0].stateCode === selectedState
+          );
           setParks(filterOutParksOnlyInState);
           console.log('data from ext API: ', data);
           setCheckedState(new Array(data.length).fill(false));
@@ -91,35 +94,37 @@ function EachNationalParkByState({
     // }
   }, [selectedState]);
 
-  return showENPBS && (
-    <div className='each-park-by-state' >
-      <BsX style={{ float: 'right' }} onClick={() => setShowENPBS(false)} />
-      <h3>National Parks{selectedState && (' in ' + selectedState)}</h3>
-      <div className='ListofParks'>
-        {parks.map((park, index) => (
-          <div key={index} title={park.description}>
-            <label >
-              <input
-                type='checkbox'
-                className='park-checkbox'
-                name={park.fullName}
-                value={park.fullName}
-                onChange={() => {
-                  handleOnChange(index, park);
-                }}
-                checked={checkedState[index]}
-              />
-              <span className='popupParks'>
-                {park.fullName}, {selectedState}
-              </span>
-            </label>
-          </div>
-        ))}
+  return (
+    showENPBS && (
+      <div className='each-park-by-state'>
+        <BsX style={{ float: 'right' }} onClick={() => setShowENPBS(false)} />
+        <h3>National Parks{selectedState && ' in ' + selectedState}</h3>
+        <div className='ListofParks'>
+          {parks.map((park, index) => (
+            <div key={index} title={park.description}>
+              <label>
+                <input
+                  type='checkbox'
+                  className='park-checkbox'
+                  name={park.fullName}
+                  value={park.fullName}
+                  onChange={() => {
+                    handleOnChange(index, park);
+                  }}
+                  checked={checkedState[index]}
+                />
+                <span className='popupParks'>
+                  {park.fullName}, {selectedState}
+                </span>
+              </label>
+            </div>
+          ))}
+        </div>
+        <button className='addToBL' onClick={handleOnClick}>
+          Add to Bucket List
+        </button>
       </div>
-      <button className='addToBL' onClick={handleOnClick}>
-        Add to Bucket List
-      </button>
-    </div>
+    )
   );
 }
 
