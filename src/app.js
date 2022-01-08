@@ -2,17 +2,23 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 // import ListOfStates from '../components/ListOfStates';
 // import NavigationBar from '../components/NavBar';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import { Fab, Action } from 'react-tiny-fab';
 import EachNationalParkByState from '../components/EachNationalParkByState';
 import BucketList from '../components/BucketList';
 import Map from '../components/Map';
-import Trips from '../components/Trips';
+import { GiFishBucket, GiMountainCave } from "react-icons/gi";
+import { IconContext } from "react-icons";
+// import Trips from '../components/Trips';
 
 function App() {
   const [parks, setParks] = useState([]);
-
   const [selectedState, setSelectedState] = useState('');
   const [rerenderBucketList, setRerenderBucketList] = useState(0);
   const [bucketList, setBucketList] = useState([]);
+  const [bucketVisibility, setBucketVisibility] = useState(false);
+  const [showENPBS, setShowENPBS] = useState(false);
 
   return (
     <Router>
@@ -26,15 +32,56 @@ function App() {
         setBucketList={setBucketList}
         rerenderBucketList={rerenderBucketList}
         setRerenderBucketList={setRerenderBucketList}
+        showENPBS={showENPBS}
+        setShowENPBS={setShowENPBS}
       />
-      <BucketList
-        bucketList={bucketList}
-        setBucketList={setBucketList}
-        rerenderBucketList={rerenderBucketList}
-        setRerenderBucketList={setRerenderBucketList}
-      />
-      <Trips />
-    </Router>
+      <Modal
+        show={bucketVisibility}
+        onHide={() => setBucketVisibility(false)}
+        size='md'
+        centered
+      >
+        <Modal.Header >
+          <Modal.Title>Your Bucket List</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <BucketList
+            bucketList={bucketList}
+            setBucketList={setBucketList}
+            rerenderBucketList={rerenderBucketList}
+            setRerenderBucketList={setRerenderBucketList}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setBucketVisibility(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Fab icon='+'
+        mainButtonStyles={{ backgroundColor: '#FF6347', width: '50px', height: '50px' }}
+      >
+        <Action
+          text='Open Bucket List'
+          onClick={() => setBucketVisibility(true)}
+          style={{ backgroundColor: '#ff4c4c' }}
+        >
+          <IconContext.Provider value={{ color: "black" }}>
+            <GiFishBucket />
+          </IconContext.Provider>
+        </Action>
+        <Action
+          text='Open ENPBS'
+          onClick={() => setShowENPBS(true)}
+          style={{ backgroundColor: '#ff4c4c' }}
+        >
+          <IconContext.Provider value={{ color: "black" }}>
+            <GiMountainCave />
+          </IconContext.Provider>
+        </Action>
+      </Fab>
+      {/* <Trips /> */}
+    </Router >
   );
 }
 
