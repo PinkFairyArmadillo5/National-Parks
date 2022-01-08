@@ -3,7 +3,7 @@ const db = require('../../models/npModels');
 const npController = {};
 
 npController.getParksFromBucketList = (req, res, next) => {
-  const bucketlist = 'Select * FROM bucketlist;';
+  const bucketlist = 'Select * FROM bucketlist ORDER BY parkName;';
   db.query(bucketlist)
     .then((data) => {
       // console.log(data);
