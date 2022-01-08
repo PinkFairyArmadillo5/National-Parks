@@ -25,6 +25,9 @@ body {
   margin: 10px;
   padding: 10px;
 }
+.mapboxgl-marker {
+  font-family: 'NPSlight';
+}
 
 h1 {
   font-family: NPSregular;
@@ -41,7 +44,15 @@ h1 {
   font-family: NPSregular;
   border-color: rgb(35, 104, 152);
 }
+.mapboxgl-popup-content {
+  color: rgb(35, 104, 152);
+  font-family: NPSregular;
+}
 
+a {
+  color: rgb(35, 104, 152);
+  font-family: NPSlight;
+}
 .modal-footer {
   background-color: rgb(248, 230, 200);
   border-color: rgb(35, 104, 152);
@@ -159,4 +170,9 @@ bucketlistTitle {
   font-family: NPSbold;
   font-size: 12px;
   font-weight: 700;
+}
+
+mapboxgl-popup mapboxgl-popup-anchor-bottom-right onhover-popup {
+  color: rgb(35, 104, 152);
+  font-family: NPSlight;
 }
