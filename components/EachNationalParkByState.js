@@ -45,6 +45,7 @@ function EachNationalParkByState({
       },
       body: JSON.stringify({
         bucketListParks: dataArr,
+        selectedState: selectedState,
       }),
     };
     fetch('http://localhost:3000/db/put-bucketlist', postOptions)
@@ -92,9 +93,10 @@ function EachNationalParkByState({
       <div className='ListofParks'>
         {parks.map((park, index) => (
           <div key={index} title={park.description}>
-            <label >
+            <label>
               <input
                 type='checkbox'
+                id='toggle'
                 className='park-checkbox'
                 name={park.fullName}
                 value={park.fullName}
@@ -103,7 +105,9 @@ function EachNationalParkByState({
                 }}
                 checked={checkedState[index]}
               />
-              <span>{park.fullName} </span>
+              <span className='popupParks'>
+                {park.fullName}, {selectedState}{' '}
+              </span>
               {/* <h4>{park.description}</h4> */}
             </label>
           </div>
